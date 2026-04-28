@@ -1,0 +1,68 @@
+.login {
+    background-color: white;
+    padding: 2rem;
+    width: 500px;
+    height: 100vh;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & .logoContainer {
+        position: relative;
+        & .logo {
+            height: 15rem;
+            border-radius: 50%;
+        }
+        & .luzLogo {
+            position: absolute;
+            height: 15rem;
+            width: 15rem;
+            border-radius: 50%;
+            box-shadow: 0 10px 10px rgb(255, 33, 70, 0.5);
+            animation: rodando 3s linear infinite;
+        }
+    }
+    & form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        & label {
+            font-size: 20px;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 10px;
+            & input {
+                width: 100%;
+                background-color: rgb(255, 198, 208);
+                padding: 10px 1rem;
+                border: none;
+                outline: none;
+                border-radius: 10px;
+                font-size: 18px;
+            }
+        }
+        & button {
+            width: 100%;
+            padding: 10px;
+            font-size: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: lightblue;
+            border: none;
+            margin-top: 2rem;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+            color: #222;
+        }
+    }
+}
+
+@keyframes rodando {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
