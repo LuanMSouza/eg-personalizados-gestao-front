@@ -20,9 +20,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 100;
 }
 
 .Container {
+  max-height: 80vh;
   padding: 2rem;
   background-color: white;
   border-radius: 10px;

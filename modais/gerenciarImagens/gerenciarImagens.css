@@ -1,0 +1,19 @@
+.adicionarImagem {
+    margin-top: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    gap: 10px;
+    & label {
+        display: flex;
+        flex-direction: column;
+
+        & select, input{
+            width: 100%;
+            background-color: pink;
+            padding: 5px 10px;
+            border: 2px solid rgb(255, 113, 137);
+            border-radius: 10px;
+            outline: none;
+        }
+    }
+}

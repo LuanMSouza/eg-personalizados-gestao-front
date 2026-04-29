@@ -1,6 +1,7 @@
 import '../App.css'
 import NavBar from '../../blocos/navbar/navbar'
 import Hero from '../../blocos/hero/hero'
+import UltimasVendas from '../../blocos/ultimasVendas/ultimasVendas'
 
 function Dashboard() {
 
@@ -8,6 +9,8 @@ function Dashboard() {
         <>
             <NavBar />
             <Hero />
+
+            <UltimasVendas />
         </>
     )
 }

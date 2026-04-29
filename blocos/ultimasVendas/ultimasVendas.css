@@ -1,0 +1,83 @@
+    .ultimasVendas {
+        & h2 {
+            text-align: center;
+            color: #444;
+            font-size: 36px;
+            margin-top: 3rem;
+        }
+        & .tabelaUltimasVendas {
+            width: 80%;
+            display: flex;
+            & .linha {
+                border: 1px solid rgb(255, 176, 189);
+                border-radius: 10px;
+                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 60% 1fr 2fr 1fr 2fr;
+                font-size: 20px;
+                padding: 2px;
+                justify-content: center;
+                align-items: center;
+                & .id {
+                    color: #555;
+                }
+                & .cliente {
+                    text-align: left;
+                    margin: 0;
+                }
+                & .pendente {
+                    color: red;
+                    padding: 0 5px;
+                    border-radius: 100px;
+                }
+                & .producao {
+                    color: blue;
+                    padding: 0 5px;
+                    border-radius: 100px;
+                }
+                & .finalizado {
+                    color: green;
+                    padding: 0 5px;
+                    border-radius: 100px;
+                }
+                & .pago {
+                    color: green;
+                    padding: 0 5px;
+                    border-radius: 100px;
+                }
+                & .em-aberto {
+                    color: red;
+                    padding: 0 5px;
+                    font-size: 15px;
+                    border-radius: 100px;
+                }
+                & .click {
+                    cursor: pointer;
+                }
+            }
+        }
+        & .tabelaUltimosOrcamentos {
+            width: 80%;
+            display: flex;
+            & .linha {
+                border: 1px solid rgb(255, 176, 189);
+                border-radius: 10px;
+                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 80%  1fr 2fr;
+                font-size: 20px;
+                padding: 2px;
+                justify-content: center;
+                align-items: center;
+                & .id {
+                    color: #555;
+                }
+                & .cliente {
+                    text-align: left;
+                    margin: 0;
+                }
+            }
+        }
+    }
