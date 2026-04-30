@@ -10,7 +10,7 @@ export function PrivateRoute({ children }: Props) {
 
     // Se não tiver token, redireciona para o login
     if (!token) {
-        return <Navigate to="/login" replace />;
+        return <Navigate to="/" replace />;
     }
 
     // Se tiver, renderiza o componente filho (o dashboard)
