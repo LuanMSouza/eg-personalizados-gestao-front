@@ -13,5 +13,11 @@ api.interceptors.request.use((config) => {
 
     return config;
 }, (error) => {
+    if (error.response && error.response.status === 401) {
+
+        localStorage.removeItem('@eg-personalizados:token');
+        window.location.href = '/';
+    }
+
     return Promise.reject(error);
 });
