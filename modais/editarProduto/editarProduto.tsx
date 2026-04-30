@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Produto } from "../../types"
+import type { Produto } from "../../types"
 import { NumericFormat } from 'react-number-format';
 import { api } from '../../axios'
 import Swal from 'sweetalert2'

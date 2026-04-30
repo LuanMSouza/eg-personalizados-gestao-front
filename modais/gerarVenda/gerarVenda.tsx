@@ -1,6 +1,6 @@
 // @ts-ignore
 import './gerarVenda.css'
-import { Produto } from "../../types"
+import type { Produto } from "../../types"
 import { useState } from 'react'
 import Swal from 'sweetalert2'
 import { api } from '../../axios'
