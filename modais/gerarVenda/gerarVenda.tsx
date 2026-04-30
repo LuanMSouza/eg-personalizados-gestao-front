@@ -178,7 +178,7 @@ export default function GerarVenda({ sair, produtos }: GerarVendaProps) {
                     <button onClick={adicionarProduto} className='adc-produto'>Adicionar Produto!!</button>
 
                     {/* Mostrando produtos */}
-                    <div style={{ width: '100%', gridColumn: ' span 2' }}>
+                    <div className='ProdutoExibir'>
                         {produtosAdicionados.length > 0 ?
                             produtosAdicionados.map((p) => {
 
@@ -202,7 +202,7 @@ export default function GerarVenda({ sair, produtos }: GerarVendaProps) {
 
                 <h4>Dados adicionais</h4>
                 <div className='tabela'>
-                    <div style={{ display: 'flex', gap: '10px' }}>
+                    <div className='Dados'>
                         <label>Total dos itens
                             <input type="text" disabled value={formatarValor(Number(totalItens))} />
                         </label>
@@ -212,7 +212,7 @@ export default function GerarVenda({ sair, produtos }: GerarVendaProps) {
                         </label>
                     </div>
 
-                    <div style={{ display: 'flex', gap: '10px' }}>
+                    <div className='Dados'>
                         <label>Taxa de entrega
                             <input type="number" disabled={!entrega} value={txEntrega} onChange={(e) => setTxEntrega(Number(e.target.value))} />
                         </label>

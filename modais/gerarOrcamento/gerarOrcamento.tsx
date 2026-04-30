@@ -177,7 +177,7 @@ export default function GerarOrcamento({ sair, produtos }: GerarOrcamentoProps) 
                     <button onClick={adicionarProduto} className='adc-produto'>Adicionar Produto!!</button>
 
                     {/* Mostrando produtos */}
-                    <div style={{ width: '100%', gridColumn: ' span 2' }}>
+                    <div className='ProdutoExibir'>
                         {produtosAdicionados.length > 0 ?
                             produtosAdicionados.map((p) => {
 
@@ -201,7 +201,7 @@ export default function GerarOrcamento({ sair, produtos }: GerarOrcamentoProps) 
 
                 <h4>Dados adicionais</h4>
                 <div className='tabela'>
-                    <div style={{ display: 'flex', gap: '10px' }}>
+                    <div className='Dados'>
                         <label>Total dos itens
                             <input type="text" disabled value={formatarValor(Number(totalItens))} />
                         </label>
@@ -211,7 +211,7 @@ export default function GerarOrcamento({ sair, produtos }: GerarOrcamentoProps) 
                         </label>
                     </div>
 
-                    <div style={{ display: 'flex', gap: '10px' }}>
+                    <div className='Dados'>
                         <label>Taxa de entrega
                             <input type="number" disabled={!entrega} value={txEntrga} onChange={(e) => setTxEntrega(Number(e.target.value))} />
                         </label>

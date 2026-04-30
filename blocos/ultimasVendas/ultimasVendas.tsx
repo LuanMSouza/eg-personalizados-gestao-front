@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { api } from '../../axios';
 import Swal from 'sweetalert2';
 import type { Venda } from '../../types';
-import { Truck, CircleUser, Target } from 'lucide-react';
+import { Truck, CircleUser, Target, Banknote } from 'lucide-react';
 
 
 export default function UltimasVendas() {
@@ -149,8 +149,8 @@ export default function UltimasVendas() {
                     <p style={{ cursor: 'pointer' }} onClick={() => gerarPrint(v)} className='id'>{v.id}</p>
                     <p className='cliente'>{v.cliente}</p>
                     <p onClick={() => alterarStatus(v.id, v.status)} style={{ cursor: 'pointer' }} className={v.status}>{v.status === 'producao' ? 'produção' : v.status}</p>
-                    <p onClick={() => alterarPagamento(v.id, v.pago)} style={{ cursor: 'pointer' }} className={v.pago ? 'pago' : 'em-aberto'}>
-                        {v.pago ? 'pago' : 'em aberto'}
+                    <p onClick={() => alterarPagamento(v.id, v.pago)} style={{ cursor: 'pointer' }}>
+                        <Banknote color={v.pago ? 'green' : 'red'} size={30} />
                     </p>
                     <p className='total'>{formatarValor(v.valor_total)}</p>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '5px', justifyItems: 'center' }}>
@@ -174,8 +174,9 @@ export default function UltimasVendas() {
                 return <div key={v.id} className='linha' style={{ opacity: v.status === 'finalizado' && v.pago ? '.5' : '1' }}>
                     <p style={{ cursor: 'pointer' }} onClick={() => gerarPrint(v)} className='id'>{v.id}</p>
                     <p className='cliente'>{v.cliente}</p>
+                    <p onClick={() => alterarStatus(v.id, v.status)} style={{ cursor: 'pointer' }} className={v.status}>{v.status === 'producao' ? 'produção' : v.status}</p>
                     <p className='total'>{formatarValor(v.valor_total)}</p>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px', justifyItems: 'center' }}>
+                    <div className='selos'>
                         {v.endereco ? <Truck size={20} color='red' /> : null}
                         {v.contato ? <CircleUser size={20} color='green' /> : null}
                         {v.obs ? <Target size={20} color='blue' /> : null}

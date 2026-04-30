@@ -1,3 +1,4 @@
+/* --- Base e Containers --- */
 .orcamentoContainer {
     width: 50vw;
     margin-top: 10px;
@@ -6,126 +7,177 @@
     max-height: 65vh;
     overflow-y: scroll;
     overflow-x: hidden;
-    box-sizing: content-box;
-    & h4 {
-        font-size: 1.5rem;
+    box-sizing: border-box; /* Alterado para border-box para o padding não "vazar" */
+}
+
+.orcamentoContainer h4 {
+    font-size: 1.5rem;
+}
+
+/* --- Tabela e Grid Principal --- */
+.tabela {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
+}
+
+/* --- Elementos de Formulário --- */
+.tabela label {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    font-size: 20px;
+}
+
+.tabela input, 
+.tabela select, 
+.tabela textarea {
+    width: 95%; /* Ajustado para dar um respiro melhor que 90% */
+    padding: 5px 10px;
+    outline: none;
+    background-color: rgb(237, 206, 255);
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.tabela input:disabled {
+    opacity: 0.6;
+}
+
+.tabela textarea {
+    resize: none;
+}
+
+/* --- Utilitários e Alinhamentos --- */
+.qvt {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 5px;
+}
+
+.Dados {
+    display: flex;
+    gap: 10px;
+}
+
+.entrega {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+/* --- Componentes Específicos --- */
+.ProdutoExibir {
+    width: 100%;
+    grid-column: span 2;
+    overflow-x: auto;
+}
+
+.produto-adicionado {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 50% 1fr 1fr 1fr 1fr 2fr auto;
+    padding: 2.5px 10px;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.produto-adicionado:hover {
+    background: rgba(255, 199, 208, 0.5);
+}
+
+.btn-excluir {
+    width: 20px;
+    height: 20px;
+    border: 1px solid red;
+    background-color: rgba(255, 0, 0, 0.7);
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+/* --- Botões e Ids --- */
+#obs {
+    grid-column: span 2;
+}
+
+.adc-produto {
+    grid-column: span 2;
+    background-color: pink;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #333;
+    transition: 0.3s;
+}
+
+#gerar {
+    width: 100%;
+    padding: 10px;
+    margin: 20px 0;
+    background-color: palevioletred;
+    border: none;
+    border-radius: 10px;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, .5);
+}
+
+/* --- Media Queries --- */
+@media screen and (max-width: 1000px) {
+    .orcamentoContainer {
+        width: 90vw !important;
+        padding: 0 10px !important;
+        max-width: 100%;
+        overflow-x: hidden;
     }
-    & .tabela {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+
+    .tabela {
+        grid-template-columns: 1fr !important;
+    }
+
+    .Dados {
+        flex-direction: column;
+    }
+
+    #obs, .adc-produto, .ProdutoExibir {
+        grid-column: span 1 !important;
+    }
+
+    .produto-adicionado {
+        /* No mobile, flex-wrap evita que o conteúdo suma/esmague */
+        display: flex !important;
+        flex-wrap: wrap;
         gap: 10px;
-        padding: 10px;
-        & label {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            margin: 0;
-            font-size: 20px;
-            & input {
-                width: 100%;
-                padding: 5px 10px;
-                outline: none;
-                background-color: rgb(237, 206, 255);
-                border: none;
-                border-radius: 10px;
-                font-size: 18px;
-                &:disabled {
-                    opacity: 0.6;
-                }
-            }
-            &#obs {
-                grid-column: span 2;
-                & textarea {
-                    width: 100%;
-                    padding: 5px 10px;
-                    outline: none;
-                    background-color: rgb(237, 206, 255);
-                    border: none;
-                    border-radius: 10px;
-                    font-size: 18px;
-                    resize: none;
-                }
-            }
-            & .entrega {
-                display: flex;
-                width: 100%;
-                gap: 10px;
-                & :nth-child(1) {
-                    width: 100%;
-                }
-                & :nth-child(2) {
-                    width: fit-content;
-                }
-            }
-        }
-        & select {
-            width: 100%;
-            padding: 5px 10px;
-            outline: none;
-            background-color: rgb(237, 206, 255);
-            border: none;
-            border-radius: 10px;
-            font-size: 18px;
-        }
-        & .qvt {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 5px;
-        }
-        & .adc-produto {
-            grid-column: span 2;
-            background-color: pink;
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 10px;
-            font-size: 18px;
-            cursor: pointer;
-            color: #333;
-            transition: 0.3;
-            &:hover {
-                color: black;
-            }
-        }
-        & .produto-adicionado {
-            display: grid;
-            width: 100%;
-            grid-template-columns: 50% 1fr 1fr 1fr 1fr 2fr auto;
-            padding: 2.5px 10px;
-            border-radius: 10px;
-            & .btn-excluir {
-                width: 20px;
-                height: 20px;
-                border: 1px solid red;
-                background-color: rgba(255, 0, 0, 0.7);
-                border-radius: 5px;
-                font-weight: bold;
-                color: white;
-                cursor: pointer;
-            }
-            & :first-child {
-                margin: 0;
-                text-align: left;
-            }
-            &:hover {
-                background: rgba(255, 199, 208, 0.5);
-            }
-        }
+        padding: 10px 0 !important;
+        border-bottom: 1px solid pink;
     }
-    & button#gerar {
-        width: 100%;
-        padding: 10px;
-        margin: 20px 0;
-        background-color: palevioletred;
-        border: none;
-        border-radius: 10px;
-        font-size: 24px;
-        color: white;
-        cursor: pointer;
-        box-shadow: 5px 5px 10px rgba(0, 0, 0, .5);
+
+    .produto-adicionado p {
+        margin: 0;
+        font-size: 14px;
+    }
+
+    .ProdutoExibir {
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+    
+    .tabela input, .tabela select, .tabela textarea {
+        width: 100%; /* Ocupa tudo no mobile */
     }
 }
 
-.tabela-produtos {
-    grid-template-columns: 3fr 1fr 1fr;
+@media screen and (max-width: 600px) {
+    .qvt {
+        grid-template-columns: 1fr !important;
+    }
 }

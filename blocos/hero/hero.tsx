@@ -92,6 +92,7 @@ export default function Hero() {
 
             {modalGerenciarImagens &&
                 <GerenciarImagens
+                    adicionarTema={(t) => setTemas((prev) => [...prev, t])}
                     temas={temas}
                     produtos={produtos}
                     sair={() => setModalGerenciarImagens(false)} />}

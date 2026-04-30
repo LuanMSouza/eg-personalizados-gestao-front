@@ -5,7 +5,6 @@ export type Produto = {
     preco_custo: number;
 }
 
-
 export type Venda = {
     id: number;
     status?: string;
@@ -29,4 +28,15 @@ export type Venda = {
 export type Tema = {
     id: number
     nome: string
+}
+
+export type Imagens = {
+    id: number 
+    img_url: string
+    produtos: {
+        nome: string
+    }
+    temas: {
+        nome: string
+    }
 }

@@ -2,18 +2,169 @@
     margin-top: 5px;
     display: grid;
     grid-template-columns: 1fr 1fr 2fr;
+    width: 100%;
     gap: 10px;
     & label {
         display: flex;
         flex-direction: column;
-
-        & select, input{
+        & select, input {
             width: 100%;
-            background-color: pink;
+            background-color: rgb(255, 192, 227);
             padding: 5px 10px;
-            border: 2px solid rgb(255, 113, 137);
+            border: 2px solid rgb(255, 151, 169);
             border-radius: 10px;
             outline: none;
+        }
+    }
+    & #uparImg {
+        grid-column: span 3;
+        width: 80%;
+        background-color: pink;
+        padding: 10px;
+        border: 2px solid rgb(255, 151, 169);
+        font-size: 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
+    }
+}
+
+.divisor {
+    margin: 2rem;
+    position: relative;
+    & div {
+        height: 1px;
+        background-color: pink;
+        width: 100%
+    }
+    & p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        background-color: white;
+        padding: 5px 20px;
+        transform: translate(-50%, -50%);
+        font-size: 20px;
+        color: #999
+    }
+}
+
+.imagensNoBanco {
+    display: grid;
+    max-width: 80vw;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    & .card {
+        border: 1px solid gray;
+        border-radius: 10px;
+        overflow: hidden;
+        padding-bottom: 10px;
+        box-shadow: 2px 2px 5px;
+        & img {
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .adicionarImagem {
+        grid-template-columns: 1fr 1fr;
+        & label.imagem {
+            grid-column: span 2;
+            width: 50%;
+        }
+        & label {
+            width: 100%;
+        }
+        & #uparImg {
+            grid-column: span 3;
+            width: 80%;
+            background-color: pink;
+            padding: 10px;
+            border: 2px solid rgb(255, 151, 169);
+            font-size: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
+        }
+    }
+    .divisor {
+        margin: 2rem;
+        position: relative;
+        & div {
+            height: 1px;
+            background-color: pink;
+            width: 100%
+        }
+        & p {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background-color: white;
+            padding: 5px 20px;
+            transform: translate(-50%, -50%);
+            font-size: 15px;
+            color: #999
+        }
+    }
+    .imagensNoBanco {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .imagensNoBanco {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .imagensNoBanco {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .imagensNoBanco {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .imagensNoBanco {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .adicionarImagem {
+        grid-template-columns: 1fr;
+        & #uparImg {
+            grid-column: span 1;
+            width: 100%;
+        }
+        & label.imagem {
+            grid-column: span 1;
+            width: 100%;
+        }
+    }
+    .divisor {
+        margin: 2rem;
+        position: relative;
+        & div {
+            height: 1px;
+            background-color: pink;
+            width: 100%
+        }
+        & p {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background-color: white;
+            padding: 5px 20px;
+            transform: translate(-50%, -50%);
+            font-size: 10px;
+            color: #999
         }
     }
 }

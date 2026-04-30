@@ -14,3 +14,35 @@
         gap: 2rem;
     }
 }
+
+@media screen and (max-width: 900px) {
+    .hero {
+        & .btns {
+            flex-wrap: wrap;
+        }
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .hero {
+        & .btns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .hero {
+        & h1 {
+            font-size: 1.5rem;
+        }
+        & h2 {
+            font-size: 1rem;
+        }
+        & .btns {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+    }
+}

@@ -26,3 +26,16 @@ nav {
         }
     }
 }
+
+@media screen and (max-width: 480px) {
+    nav {
+        & button {
+            font-size: 15px;
+            padding: 10px 20px;
+        }
+
+        & img{
+            height: 3rem;
+        }
+    }
+}

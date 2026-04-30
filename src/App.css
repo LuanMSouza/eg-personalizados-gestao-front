@@ -25,6 +25,7 @@ body {
 
 .Container {
   max-height: 80vh;
+  max-width: 80vw;
   padding: 2rem;
   background-color: white;
   border-radius: 10px;
@@ -91,5 +92,11 @@ body {
     &:hover {
       filter: brightness(0.9);
     }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .TituloModal {
+    font-size: 24px;
   }
 }

@@ -1,41 +1,78 @@
-.tabela {
+.tabelaLista, .tabela {
     border: 1px solid gray;
     border-radius: 10px;
-    overflow: hidden;
     width: 50vw;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
-    & .linha {
-        padding: 3px 5px;
-        display: grid;
-        grid-template-columns: 1fr 80% 2fr;
-        transition: .3s;
-        cursor: pointer;
-        &:hover {
-            background-color: pink;
-        }
-        & :nth-child(2) {
-            text-align: left;
-            margin: 0;
-        }
-    }
-    & .vazio {
-        padding: 1rem;
-        font-size: 20px;
-    }
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
+
+.linha {
+    padding: 3px 5px;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 10% 70% 20%;
+    transition: .3s;
+    cursor: pointer;
+    align-items: center;
+}
+
+.linha:hover {
+    background-color: pink;
+}
+
+.linha:nth-child(2) {
+    text-align: left;
+    margin: 0;
+}
+
+.vazio {
+    padding: 1rem;
+    font-size: 20px;
+}
+
+
+/* --- Filtro --- */
 
 .filtro {
     width: 100%;
     display: flex;
     flex-direction: column;
     margin: 1rem 0;
-    & input {
-        width: 70%;
-        padding: 10px 1rem;
-        border-radius: 10px;
-        border: 2px solid pink;
-        background-color: rgba(255, 192, 203, 0.5);
-        font-size: 17px;
-        outline: none;
+}
+
+.filtro input {
+    width: 70%;
+    padding: 10px 1rem;
+    border-radius: 10px;
+    border: 2px solid pink;
+    background-color: rgba(255, 192, 203, 0.5);
+    font-size: 17px;
+    outline: none;
+}
+
+
+/* --- Media Queries --- */
+
+@media screen and (max-width: 600px) {
+    .tabelaLista {
+        width: 100%;
+        max-height: 300px;
+        overflow-y: auto;
+        /* Scroll vertical para a lista */
+        overflow-x: auto;
+        /* Scroll horizontal quando a linha for larga */
+        display: block;
+        /* Garante que o overflow funcione corretamente */
+    }
+    .linha {
+        /* Define larguras fixas ou mínimas para as colunas */
+        /* Isso impede que elas esmaguem e força o scroll lateral */
+        grid-template-columns: 50px 250px 80px;
+        width: max-content;
+        /* Força a linha a ter a largura total do conteúdo */
+        min-width: 100%;
+        /* Garante que ocupe pelo menos o espaço visível */
     }
 }

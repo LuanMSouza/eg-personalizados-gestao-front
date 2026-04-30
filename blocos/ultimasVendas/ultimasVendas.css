@@ -8,6 +8,8 @@
         & .tabelaUltimasVendas {
             width: 80%;
             display: flex;
+            flex-direction: column;
+            gap: 10px;
             & .linha {
                 border: 1px solid rgb(255, 176, 189);
                 border-radius: 10px;
@@ -60,13 +62,15 @@
         & .tabelaUltimosOrcamentos {
             width: 80%;
             display: flex;
+            flex-direction: column;
+            gap: 10px;
             & .linha {
                 border: 1px solid rgb(255, 176, 189);
                 border-radius: 10px;
                 box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
                 width: 100%;
                 display: grid;
-                grid-template-columns: 1fr 80%  1fr 2fr;
+                grid-template-columns: 1fr 60% 3fr 1fr 2fr;
                 font-size: 20px;
                 padding: 2px;
                 justify-content: center;
@@ -77,6 +81,61 @@
                 & .cliente {
                     text-align: left;
                     margin: 0;
+                }
+                & .selos {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    justify-items: center
+                }
+            }
+        }
+    }
+    
+    @media screen and (max-width: 1000px) {
+        .ultimasVendas {
+            & .tabelaUltimasVendas, .tabelaUltimosOrcamentos {
+                & .linha {
+                    grid-template-columns: 40% 3fr 1fr 1fr 2fr;
+                    padding-left: 5px;
+                    & .id {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    
+    @media screen and (max-width: 700px) {
+        .ultimasVendas {
+            & .tabelaUltimasVendas, .tabelaUltimosOrcamentos {
+                width: 95vw;
+                overflow-x: auto;
+                padding-bottom: 10px;
+                & .linha {
+                    min-width: 750px;
+                    grid-template-columns: 300px 100px 100px 100px;
+                    & div {
+                        display: none !important;
+                        background-color: aqua;
+                    }
+                }
+            }
+        }
+    }
+    
+    @media screen and (max-width: 450px) {
+        .ultimasVendas {
+            & .tabelaUltimasVendas, .tabelaUltimosOrcamentos {
+                width: 95vw;
+                overflow-x: auto;
+                padding-bottom: 10px;
+                & .linha {
+                    min-width: 750px;
+                    grid-template-columns: 300px 100px 100px 100px;
+                    & div {
+                        display: none !important;
+                    }
                 }
             }
         }

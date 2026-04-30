@@ -1,6 +1,7 @@
+// @ts-ignorez
+import './listaDeProdutos.css'
 import { useState } from "react"
 import type { Produto } from "../../types"
-import './listaDeProdutos.css'
 import EditarProduto from '../editarProduto/editarProduto'
 
 type ListaProdProps = {
@@ -42,7 +43,7 @@ export default function ListaDeProdutos({ sair, produtos, atualizarLista }: List
             </label>
 
             {/* Tabela */}
-            <div className="tabela">
+            <div className="tabelaLista">
 
                 {produtosFiltrados.length === 0 ? (
                     <p className="vazio">Nenhum produto encontrado...</p>
