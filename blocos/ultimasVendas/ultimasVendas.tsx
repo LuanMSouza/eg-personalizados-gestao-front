@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { api } from '../../axios';
 import Swal from 'sweetalert2';
 import type { Venda } from '../../types';
-import { Truck, CircleUser, Target, Banknote, Loader } from 'lucide-react';
+import { Truck, CircleUser, Target, Banknote } from 'lucide-react';
 import Loading from '../../componentes/loading/loading';
 
 
