@@ -58,6 +58,7 @@ export default function Hero() {
 
     return (
         <section className='hero'>
+
             <h1>Bem vinda Érika!!</h1>
             <h2>O que faremos agora?...</h2>
 

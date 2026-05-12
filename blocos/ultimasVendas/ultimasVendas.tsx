@@ -4,12 +4,15 @@ import { useEffect, useState } from 'react';
 import { api } from '../../axios';
 import Swal from 'sweetalert2';
 import type { Venda } from '../../types';
-import { Truck, CircleUser, Target, Banknote } from 'lucide-react';
+import { Truck, CircleUser, Target, Banknote, Loader } from 'lucide-react';
+import Loading from '../../componentes/loading/loading';
 
 
 export default function UltimasVendas() {
 
     const [vendas, setVendas] = useState<Venda[]>([])
+
+    const [loading, setLoading] = useState(false)
 
     const pegarVendas = async () => {
         try {
@@ -111,6 +114,9 @@ export default function UltimasVendas() {
     };
 
     const gerarPrint = async (v: any) => {
+
+        setLoading(true)
+
         try {
             const res = await api.post('/vendas/gerarArquivo', v);
             const base64Data = res.data.image;
@@ -131,11 +137,15 @@ export default function UltimasVendas() {
         } catch (error) {
             console.error(error);
             Swal.fire('Erro', 'Não foi possível gerar a imagem para download.', 'error');
+        } finally {
+            setLoading(false)
         }
     }
 
 
     return <div className='ultimasVendas'>
+
+        <Loading loading={loading} />
 
         <h2>Ultimas vendas</h2>
 

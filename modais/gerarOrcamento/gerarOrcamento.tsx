@@ -4,6 +4,7 @@ import type { Produto } from "../../types"
 import { useState } from 'react'
 import Swal from 'sweetalert2'
 import { api } from '../../axios'
+import Loading from '../../componentes/loading/loading'
 
 type GerarOrcamentoProps = {
     sair: () => void
@@ -11,6 +12,8 @@ type GerarOrcamentoProps = {
 }
 
 export default function GerarOrcamento({ sair, produtos }: GerarOrcamentoProps) {
+
+    const [loading, setLoading] = useState(false)
 
     const hoje = new Date()
     const dataFutura = new Date()
@@ -44,6 +47,7 @@ export default function GerarOrcamento({ sair, produtos }: GerarOrcamentoProps) 
             return
         }
 
+
         const produto = {
             nome: produtoEmCadastro,
             quantidade: quantidade,
@@ -56,6 +60,7 @@ export default function GerarOrcamento({ sair, produtos }: GerarOrcamentoProps) 
         setProdutoEmCadastro('')
         setQuantidade('')
         setValorUnt('')
+
     }
 
     const removerProduto = (nome: string) => {
@@ -76,6 +81,9 @@ export default function GerarOrcamento({ sair, produtos }: GerarOrcamentoProps) 
             Swal.fire('Opa...', 'Estão faltando informações importantes!!', 'warning')
             return
         }
+
+        setLoading(true)
+
 
         const dadosParaOBack = {
             nome,
@@ -104,9 +112,14 @@ export default function GerarOrcamento({ sair, produtos }: GerarOrcamentoProps) 
         link.click();
         document.body.removeChild(link);
 
+        setLoading(false)
+
+
     }
 
     return <div className="Cortina" onClick={sair}>
+
+        <Loading loading={loading} />
 
         <div className="Container" onClick={(e) => e.stopPropagation()}>
             <button onClick={sair} className="sair">X</button>

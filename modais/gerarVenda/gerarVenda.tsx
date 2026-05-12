@@ -4,6 +4,7 @@ import type { Produto } from "../../types"
 import { useState } from 'react'
 import Swal from 'sweetalert2'
 import { api } from '../../axios'
+import Loading from '../../componentes/loading/loading'
 
 type GerarVendaProps = {
     sair: () => void
@@ -11,6 +12,8 @@ type GerarVendaProps = {
 }
 
 export default function GerarVenda({ sair, produtos }: GerarVendaProps) {
+
+    const [loading, setLoading] = useState(false)
 
     // Dados clientes
     const [nome, setNome] = useState('')
@@ -71,6 +74,9 @@ export default function GerarVenda({ sair, produtos }: GerarVendaProps) {
             return
         }
 
+        setLoading(true)
+
+
         const dadosParaOBack = {
             nome,
             whatsapp,
@@ -85,22 +91,28 @@ export default function GerarVenda({ sair, produtos }: GerarVendaProps) {
             endereco
         }
 
+
+
         const res = await api.post('/gerar/venda', dadosParaOBack)
 
-        const base64Image = res.data.image; // A string que você viu no log
+        const base64Image = res.data.image;
 
         const link = document.createElement('a');
 
         link.href = base64Image;
-        link.download = `orcamento_${Date.now()}.png`; // Nome que terá o arquivo
+        link.download = `orcamento_${Date.now()}.png`;
+
 
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
 
+        setLoading(false)
     }
 
     return <div className="Cortina" onClick={sair}>
+
+        <Loading loading={loading} />
 
         <div className="Container" onClick={(e) => e.stopPropagation()}>
             <button onClick={sair} className="sair">X</button>

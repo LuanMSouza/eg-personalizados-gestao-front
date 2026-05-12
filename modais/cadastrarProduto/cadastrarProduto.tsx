@@ -3,6 +3,7 @@ import { NumericFormat } from 'react-number-format';
 import Swal from "sweetalert2";
 import { api } from "../../axios";
 import type { Produto } from "../../types";
+import Loading from "../../componentes/loading/loading";
 
 type CadastrarProdutosProps = {
     sair: () => void
@@ -10,6 +11,8 @@ type CadastrarProdutosProps = {
 }
 
 export default function CadastrarProduto({ sair, atualizarProduto }: CadastrarProdutosProps) {
+
+    const [loading, setLoading] = useState(false)
 
     const [nomeProduto, setNomeProduto] = useState('')
     const [custoProduto, setCustoProduto] = useState<number | undefined>()
@@ -22,6 +25,8 @@ export default function CadastrarProduto({ sair, atualizarProduto }: CadastrarPr
             Swal.fire('Opa...', 'Todos os campos são obrigatórios!!', 'warning')
             return
         }
+
+        setLoading(true)
 
         try {
             const res = await api.post('/produtos', {
@@ -44,11 +49,16 @@ export default function CadastrarProduto({ sair, atualizarProduto }: CadastrarPr
         } catch (error: any) {
             const mensagem = error.response?.data?.error || 'Erro ao salvar produto.'
             Swal.fire('Erro!', mensagem, 'error')
+        } finally {
+            setLoading(false)
         }
     }
 
     return (
         <div className="Cortina" onClick={sair}>
+
+            <Loading loading={loading} />
+
             <div className="Container" onClick={(e) => e.stopPropagation()}>
                 <button onClick={sair} className="sair">X</button>
                 <h3 className="TituloModal">Cadastrar produto</h3>

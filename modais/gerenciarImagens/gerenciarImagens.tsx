@@ -5,6 +5,7 @@ import type { Imagens, Produto, Tema } from '../../types'
 import './gerenciarImagens.css'
 import { api } from '../../axios'
 import Swal from 'sweetalert2'
+import Loading from '../../componentes/loading/loading'
 
 type gerenciarImagensProps = {
     sair: () => void
@@ -15,6 +16,8 @@ type gerenciarImagensProps = {
 
 
 export default function GerenciarImagens({ sair, produtos, temas, adicionarTema }: gerenciarImagensProps) {
+
+    const [loading, setLoading] = useState(false)
 
     const [produto, setProduto] = useState('')
     const [tema, setTema] = useState('')
@@ -27,8 +30,6 @@ export default function GerenciarImagens({ sair, produtos, temas, adicionarTema 
         const res = await api.get('/imagens')
 
         setImagensNoBanco(res.data)
-        console.log(res.data);
-
     }
 
     const excluirImagem = async (i: Imagens) => {
@@ -64,6 +65,9 @@ export default function GerenciarImagens({ sair, produtos, temas, adicionarTema 
     }, [])
 
     const uparImagem = async () => {
+
+        setLoading(true)
+
         try {
             const formData = new FormData();
 
@@ -97,10 +101,14 @@ export default function GerenciarImagens({ sair, produtos, temas, adicionarTema 
 
         } catch (error) {
             Swal.fire('Erro', 'Falha no upload', 'error');
+        } finally {
+            setLoading(false)
         }
     }
 
     return <div className="Cortina">
+
+        <Loading loading={loading} />
 
         <div className="Container">
             <button onClick={sair} className="sair">X</button>

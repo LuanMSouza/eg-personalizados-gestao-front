@@ -3,6 +3,7 @@ import type { Produto } from "../../types"
 import { NumericFormat } from 'react-number-format';
 import { api } from '../../axios'
 import Swal from 'sweetalert2'
+import Loading from "../../componentes/loading/loading";
 
 type EditarProdutoProps = {
     sair: () => void
@@ -19,6 +20,8 @@ export default function EditarProduto({ sair, produtoSelecionado, atualizarLista
         preco_venda: produtoSelecionado.preco_venda
     })
 
+    const [loading, setLoading] = useState(false)
+
     const alterar = async (e: React.FormEvent) => {
         e.preventDefault()
 
@@ -31,6 +34,9 @@ export default function EditarProduto({ sair, produtoSelecionado, atualizarLista
                 custo: produtoSelecionado.preco_custo
             }
 
+            setLoading(true)
+
+
             const res = await api.put(`/produtos`, alterarProBack)
 
             if (res.data) {
@@ -42,11 +48,16 @@ export default function EditarProduto({ sair, produtoSelecionado, atualizarLista
         } catch (error: any) {
             const msg = error.response?.data?.error || 'Erro ao alterar produto'
             Swal.fire('Erro', msg, 'error')
+        } finally {
+            setLoading(false)
         }
     }
 
     return <div className="Cortina" onClick={sair}>
         <div className="Container" onClick={(e) => e.stopPropagation()}>
+
+            <Loading loading={loading} />
+
             <button onClick={sair} className="sair">X</button>
             <h3 className="TituloModal">Alterar o produto ''{produtoSelecionado.nome}''</h3>
 
