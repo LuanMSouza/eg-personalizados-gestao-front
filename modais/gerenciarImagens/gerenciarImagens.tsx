@@ -1,6 +1,6 @@
 // @ts-ignore
 import { useEffect, useState } from 'react'
-import type { Imagens, Produto, Tema } from '../../types'
+import type { Imagens, Produto } from '../../types'
 // @ts-ignore
 import './gerenciarImagens.css'
 import { api } from '../../axios'
@@ -9,26 +9,21 @@ import Loading from '../../componentes/loading/loading'
 
 type gerenciarImagensProps = {
     sair: () => void
-    temas: Tema[]
     produtos: Produto[]
-    adicionarTema: (tema: any) => void
 }
 
 
-export default function GerenciarImagens({ sair, produtos, temas, adicionarTema }: gerenciarImagensProps) {
+export default function GerenciarImagens({ sair, produtos }: gerenciarImagensProps) {
 
     const [loading, setLoading] = useState(false)
 
     const [produto, setProduto] = useState('')
-    const [tema, setTema] = useState('')
-    const [temaCriado, setTemaCriado] = useState('')
     const [imagem, setImagem] = useState<File | null>(null);
 
     const [imagensNoBanco, setImagensNoBanco] = useState<Imagens[]>([])
 
     const pegarImagens = async () => {
         const res = await api.get('/imagens')
-
         setImagensNoBanco(res.data)
     }
 
@@ -36,22 +31,19 @@ export default function GerenciarImagens({ sair, produtos, temas, adicionarTema 
 
         Swal.fire({
             title: 'Tem certeza?',
-            text: `Deseja excluir a imagem da ${i.produtos?.nome}, tema ${i.temas?.nome ?? 'Sem tema'}? Essa ação não pode ser desfeita!!`,
+            text: `Deseja excluir a imagem do produto ${i.produtos?.nome}? Essa ação não pode ser desfeita!!`,
             icon: 'warning',
             showDenyButton: true,
             confirmButtonText: 'Excluir!!',
             denyButtonText: 'Cancelar!',
-            confirmButtonColor: '#d33', // Vermelho para exclusão
-            denyButtonColor: '#3085d6', // Azul para cancelar
+            confirmButtonColor: '#d33',
+            denyButtonColor: '#3085d6',
         }).then(async (result) => {
             if (result.isConfirmed) {
-
                 const res = await api.delete(`/imagens/${i.id}`)
-
                 if (res.data.ok) {
                     setImagensNoBanco(prev => prev.filter(item => item.id !== i.id));
                 }
-
                 Swal.fire('Deletado!', '', 'success');
             } else if (result.isDenied) {
                 Swal.fire('Cancelado', 'A imagem está a salva :)', 'info');
@@ -72,8 +64,6 @@ export default function GerenciarImagens({ sair, produtos, temas, adicionarTema 
             const formData = new FormData();
 
             formData.append('produto_id', String(produto));
-            formData.append('tema_id', String(tema));
-            formData.append('tema_criado', temaCriado);
 
             if (imagem) {
                 formData.append('imagem', imagem);
@@ -85,19 +75,13 @@ export default function GerenciarImagens({ sair, produtos, temas, adicionarTema 
                 }
             });
 
-            if (res.data.novoTema) {
-                adicionarTema(res.data.novoTema)
-            }
-
             if (res.data.data) {
                 setImagensNoBanco(prev => [...prev, res.data.data])
             }
 
-            Swal.fire('Sucesso!', 'Imagem e dados salvos.', 'success');
+            Swal.fire('Sucesso!', 'Imagem salva.', 'success');
             setProduto('')
-            setTema('')
             setImagem(null)
-
 
         } catch (error) {
             Swal.fire('Erro', 'Falha no upload', 'error');
@@ -123,37 +107,14 @@ export default function GerenciarImagens({ sair, produtos, temas, adicionarTema 
                         <select value={produto} onChange={(e) => setProduto(e.target.value)}>
                             <option disabled value="">Selecione um produto...</option>
 
-                            {produtos.map((p) => {
-
-                                return <option value={p.id} key={p.id}>
+                            {produtos.map((p) => (
+                                <option value={p.id} key={p.id}>
                                     {p.nome}
                                 </option>
-
-                            })}
+                            ))}
 
                         </select>
                     </label>
-
-                    <label>Tema
-
-                        <select value={tema} onChange={(e) => setTema(e.target.value)}>
-                            <option value="" disabled>Selecione um tema...</option>
-                            <option value="CRIAR">Crie um tema!!</option>
-
-                            {temas.map((t) => {
-
-                                return <option value={t.id} key={t.id}>
-                                    {t.nome}
-                                </option>
-
-                            })}
-
-                        </select>
-                        {tema === 'CRIAR' &&
-                            <input value={temaCriado} onChange={(e) => setTemaCriado(e.target.value)} style={{ marginTop: '5px' }} placeholder='Novo tema...' type='text' />}
-                    </label>
-
-
 
                     <label className='imagem'>
                         Imagem!!
@@ -165,7 +126,7 @@ export default function GerenciarImagens({ sair, produtos, temas, adicionarTema 
                                 }
                             }}
                             type="file"
-                            accept="image/*" // Dica: filtra para aceitar apenas imagens
+                            accept="image/*"
                         />
                     </label>
 
@@ -185,13 +146,11 @@ export default function GerenciarImagens({ sair, produtos, temas, adicionarTema 
                         <div key={i.id} className="card" onClick={() => excluirImagem(i)}>
                             <img src={i.img_url} alt={i.produtos?.nome} />
                             <p>P: {i.produtos?.nome}</p>
-                            <p>T: {i.temas?.nome ?? 'Nenhum'}</p>
                         </div>
                     ))}
 
                 </div>
             </div>
-
 
 
         </div>

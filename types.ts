@@ -25,18 +25,10 @@ export type Venda = {
     venda_itens: Produto[]; // O tipo dos itens da venda
 }
 
-export type Tema = {
-    id: number
-    nome: string
-}
-
 export type Imagens = {
-    id: number 
+    id: number
     img_url: string
     produtos: {
-        nome: string
-    }
-    temas: {
         nome: string
     }
 }

@@ -9,7 +9,7 @@ import ListarProdutos from '../../modais/listaDeProdutos/listaDeProdutos'
 import { useEffect, useState } from 'react'
 import { api } from '../../axios'
 import Swal from 'sweetalert2'
-import type { Tema, Produto } from '../../types'
+import type { Produto } from '../../types'
 import GerarOrcamento from '../../modais/gerarOrcamento/gerarOrcamento'
 import GerarVenda from '../../modais/gerarVenda/gerarVenda'
 import GerenciarImagens from '../../modais/gerenciarImagens/gerenciarImagens'
@@ -23,7 +23,6 @@ export default function Hero() {
     const [modalGerenciarImagens, setModalGerenciarImagens] = useState(false)
 
     const [produtos, setProdutos] = useState<Produto[]>([]);
-    const [temas, setTemas] = useState<Tema[]>([]);
 
     const pegarProdutos = async () => {
         try {
@@ -35,19 +34,8 @@ export default function Hero() {
         }
     }
 
-    const pegarTemas = async () => {
-        try {
-            const res = await api.get('/produtos/temas')
-            setTemas((prev) => [...prev, ...res.data.data])
-
-        } catch (error) {
-            Swal.fire('Opa...', 'ocorreu um erro!!', 'error')
-        }
-    }
-
     useEffect(() => {
         pegarProdutos()
-        pegarTemas()
     }, [])
 
     const handleAtualizarLista = (produtoEditado: Produto) => {
@@ -93,8 +81,6 @@ export default function Hero() {
 
             {modalGerenciarImagens &&
                 <GerenciarImagens
-                    adicionarTema={(t) => setTemas((prev) => [...prev, t])}
-                    temas={temas}
                     produtos={produtos}
                     sair={() => setModalGerenciarImagens(false)} />}
 
