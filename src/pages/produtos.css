@@ -1,0 +1,169 @@
+.pageProdutos {
+    padding: 2rem 3rem;
+    margin: 0;
+    min-height: calc(100vh - 90px);
+}
+
+/* ---- Header ---- */
+
+.headerProdutos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 2rem 0;
+}
+
+.tituloVoltarProdutos {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin: 0;
+}
+
+.tituloVoltarProdutos h1 {
+    font-size: 2.2rem;
+    color: #444;
+    margin: 0;
+    font-weight: 800;
+}
+
+.voltarBtn {
+    background-color: rgb(255, 177, 255);
+    border: 2px solid rgb(255, 140, 159);
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+    margin: 0;
+    color: #333;
+    box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.25);
+}
+
+.voltarBtn:hover {
+    transform: scale(1.07);
+}
+
+/* ---- Filtro ---- */
+
+.pageProdutos .filtroWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0 0 1.2rem 0;
+    align-items: flex-start;
+}
+
+.pageProdutos .filtroWrap label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #444;
+    margin: 0;
+}
+
+.pageProdutos .filtroWrap input {
+    width: 380px;
+    padding: 10px 1rem;
+    border-radius: 12px;
+    border: 2px solid rgb(255, 140, 159);
+    background-color: rgba(255, 192, 203, 0.4);
+    font-size: 17px;
+    outline: none;
+    margin: 0;
+    transition: border .2s, box-shadow .2s;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.pageProdutos .filtroWrap input:focus {
+    border-color: rgb(207, 100, 255);
+    box-shadow: 0 0 0 3px rgba(207, 100, 255, 0.2);
+}
+
+/* ---- Tabela ---- */
+
+.tabelaProdutosPage {
+    border-radius: 14px;
+    width: 100%;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+    background-color: white;
+    border: 1.5px solid rgba(255, 140, 159, 0.4);
+}
+
+.cabecalhoProdutos {
+    padding: 12px 10px;
+    display: grid;
+    grid-template-columns: 8% 67% 25%;
+    background: linear-gradient(135deg, rgb(225, 130, 255), rgb(255, 160, 200));
+    font-weight: 700;
+    font-size: 17px;
+    color: #333;
+}
+
+.cabecalhoProdutos span {
+    margin: 0;
+    padding: 0 6px;
+}
+
+.tabelaProdutosPage .linha {
+    padding: 12px 10px;
+    display: grid;
+    grid-template-columns: 8% 67% 25%;
+    transition: background-color .2s;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 192, 203, 0.5);
+    font-size: 16px;
+    color: #444;
+    align-items: center;
+}
+
+.tabelaProdutosPage .linha:last-child {
+    border-bottom: none;
+}
+
+.tabelaProdutosPage .linha:hover {
+    background-color: rgba(255, 192, 203, 0.35);
+}
+
+.tabelaProdutosPage .linha p {
+    margin: 0;
+    padding: 0 6px;
+}
+
+.tabelaProdutosPage .vazio {
+    padding: 2.5rem;
+    text-align: center;
+    font-size: 18px;
+    color: #999;
+    margin: 0;
+}
+
+/* ---- Responsivo ---- */
+
+@media screen and (max-width: 750px) {
+    .pageProdutos {
+        padding: 1rem 1.2rem;
+    }
+
+    .headerProdutos {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .pageProdutos .filtroWrap input {
+        width: 100%;
+    }
+
+    .cabecalhoProdutos,
+    .tabelaProdutosPage .linha {
+        grid-template-columns: 50px 1fr 110px;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .tituloVoltarProdutos h1 {
+        font-size: 1.6rem;
+    }
+}

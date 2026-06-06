@@ -3,6 +3,7 @@ export type Produto = {
     nome: string;
     preco_venda: number;
     preco_custo: number;
+    obs?: string;
 }
 
 export type Venda = {

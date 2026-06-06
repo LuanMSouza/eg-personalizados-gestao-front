@@ -17,7 +17,8 @@ export default function EditarProduto({ sair, produtoSelecionado, atualizarLista
         id: produtoSelecionado.id,
         nome: produtoSelecionado.nome,
         preco_custo: produtoSelecionado.preco_custo,
-        preco_venda: produtoSelecionado.preco_venda
+        preco_venda: produtoSelecionado.preco_venda,
+        obs: produtoSelecionado.obs ?? ''
     })
 
     const [loading, setLoading] = useState(false)
@@ -28,10 +29,11 @@ export default function EditarProduto({ sair, produtoSelecionado, atualizarLista
         try {
 
             const alterarProBack = {
-                id: produtoSelecionado.id,
-                nome: produtoSelecionado.nome,
-                valor: produtoSelecionado.preco_venda,
-                custo: produtoSelecionado.preco_custo
+                id: produto.id,
+                nome: produto.nome,
+                valor: produto.preco_venda,
+                custo: produto.preco_custo,
+                obs: produto.obs || undefined
             }
 
             setLoading(true)
@@ -103,6 +105,17 @@ export default function EditarProduto({ sair, produtoSelecionado, atualizarLista
                         fixedDecimalScale
                         allowNegative={false}
                     />
+                </label>
+
+                <label>Observação
+                    <input
+                        value={produto.obs ?? ''}
+                        onChange={(e) => setProduto((prev) => ({
+                            ...prev,
+                            obs: e.target.value
+                        }))}
+                        type="text"
+                        placeholder="Opcional..." />
                 </label>
 
                 <button type="submit">Alterar!!</button>

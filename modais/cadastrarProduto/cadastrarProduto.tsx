@@ -17,6 +17,7 @@ export default function CadastrarProduto({ sair, atualizarProduto }: CadastrarPr
     const [nomeProduto, setNomeProduto] = useState('')
     const [custoProduto, setCustoProduto] = useState<number | undefined>()
     const [valorProduto, setValorProduto] = useState<number | undefined>()
+    const [obsProduto, setObsProduto] = useState('')
 
     const cadastrar = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -32,7 +33,8 @@ export default function CadastrarProduto({ sair, atualizarProduto }: CadastrarPr
             const res = await api.post('/produtos', {
                 nome: nomeProduto,
                 valor: valorProduto,
-                custo: custoProduto
+                custo: custoProduto,
+                obs: obsProduto || undefined
             })
 
             Swal.fire('Boa!', 'Produto cadastrado com sucesso!', 'success')
@@ -43,6 +45,7 @@ export default function CadastrarProduto({ sair, atualizarProduto }: CadastrarPr
             setNomeProduto('')
             setCustoProduto(undefined)
             setValorProduto(undefined)
+            setObsProduto('')
 
             sair()
 
@@ -95,6 +98,14 @@ export default function CadastrarProduto({ sair, atualizarProduto }: CadastrarPr
                             fixedDecimalScale
                             allowNegative={false}
                         />
+                    </label>
+
+                    <label>Observação
+                        <input
+                            value={obsProduto}
+                            onChange={(e) => setObsProduto(e.target.value)}
+                            type="text"
+                            placeholder="Opcional..." />
                     </label>
 
                     <button type="submit">Cadastrar!</button>

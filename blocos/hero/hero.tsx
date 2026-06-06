@@ -2,11 +2,8 @@
 import './hero.css'
 import Button from '../../componentes/button/button'
 
-import CadastrarProduto from '../../modais/cadastrarProduto/cadastrarProduto'
-import ListarProdutos from '../../modais/listaDeProdutos/listaDeProdutos'
-
-
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { api } from '../../axios'
 import Swal from 'sweetalert2'
 import type { Produto } from '../../types'
@@ -16,8 +13,8 @@ import GerenciarImagens from '../../modais/gerenciarImagens/gerenciarImagens'
 
 export default function Hero() {
 
-    const [modalCadastrarProduto, setModalCadastrarProduto] = useState(false)
-    const [modalListarProdutos, setModalListarProdutos] = useState(false)
+    const nav = useNavigate()
+
     const [modalGerarOrcamento, setModalGerarOrcamento] = useState(false)
     const [modalGerarVenda, setModalGerarVenda] = useState(false)
     const [modalGerenciarImagens, setModalGerenciarImagens] = useState(false)
@@ -38,12 +35,6 @@ export default function Hero() {
         pegarProdutos()
     }, [])
 
-    const handleAtualizarLista = (produtoEditado: Produto) => {
-        setProdutos((prev) =>
-            prev.map((p) => (p.id === produtoEditado.id ? produtoEditado : p))
-        )
-    }
-
     return (
         <section className='hero'>
 
@@ -54,20 +45,8 @@ export default function Hero() {
                 <Button text='Gerenciar Imagens' tipo='claro' onClick={() => setModalGerenciarImagens(true)} />
                 <Button text='Gerar orçamento' tipo='escuro' onClick={() => setModalGerarOrcamento(true)} />
                 <Button text='Gerar venda' tipo='claro' onClick={() => setModalGerarVenda(true)} />
-                <Button text='Cadastrar produtos' tipo='escuro' onClick={() => setModalCadastrarProduto(true)} />
-                <Button text='Lista de produtos' tipo='claro' onClick={() => setModalListarProdutos(true)} />
+                <Button text='Produtos' tipo='escuro' onClick={() => nav('/produtos')} />
             </div>
-
-            {modalCadastrarProduto &&
-                <CadastrarProduto
-                    atualizarProduto={(p) => setProdutos((prev) => [...prev, p])}
-                    sair={() => setModalCadastrarProduto(false)} />}
-
-            {modalListarProdutos &&
-                <ListarProdutos
-                    sair={() => setModalListarProdutos(false)}
-                    atualizarLista={(p) => handleAtualizarLista(p)}
-                    produtos={produtos} />}
 
             {modalGerarOrcamento &&
                 <GerarOrcamento
