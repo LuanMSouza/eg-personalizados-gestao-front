@@ -2,7 +2,7 @@
 
 # EG Personalizados — Dashboard de Gestão
 
-Painel administrativo da EG Personalizados.
+Painel administrativo desenvolvido para a EG Personalizados, empresa da região de Santos, SP.
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
@@ -15,7 +15,7 @@ Painel administrativo da EG Personalizados.
 
 ## 📋 Sobre
 
-Dashboard administrativo para gestão de pedidos, clientes e produtos da EG Personalizados. Interface completa para o time interno da empresa.
+Projeto freelance desenvolvido para a **EG Personalizados**, empresa de produtos personalizados da região de Santos, SP. Dashboard para gestão interna de pedidos, clientes e produtos.
 
 ## 🚀 Como Rodar
 
